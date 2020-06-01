@@ -34,10 +34,10 @@ public class KnifeController : MonoBehaviour
             if (touch.phase == TouchPhase.Moved)
             {
                 knifeAnim.SetBool("isPlay", true);
-                transform.position = new Vector3(
-                     Mathf.Clamp(transform.position.x, -1, 1) + touch.deltaPosition.x * speedModifier * Time.deltaTime,
-                     transform.position.y,
-                     Mathf.Clamp(transform.position.z, -.5f, .5f) + touch.deltaPosition.y * speedModifier * Time.deltaTime
+                transform.localPosition = new Vector3(
+                     Mathf.Clamp(transform.localPosition.x, -1, 1) + touch.deltaPosition.x * speedModifier * Time.deltaTime,
+                     transform.localPosition.y,
+                     Mathf.Clamp(transform.localPosition.z, -.5f, .5f) + touch.deltaPosition.y * speedModifier * Time.deltaTime
                     );
             }
             else if (touch.phase == TouchPhase.Ended)

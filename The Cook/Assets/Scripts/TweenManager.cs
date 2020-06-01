@@ -17,10 +17,10 @@ public class TweenManager : MonoBehaviour
     {
         imgFade = _imgFade;
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(_imgFade.DOFade(1, durationTime)).Append(_imgFade.DOFade(0, durationTime)).OnComplete(Complete);
+        sequence.Append(_imgFade.DOFade(1, durationTime)).Append(_imgFade.DOFade(0, durationTime)).OnComplete(DoFadeComplete);
     }
 
-    private static void Complete()
+    private static void DoFadeComplete()
     {
         Destroy(imgFade);
     }

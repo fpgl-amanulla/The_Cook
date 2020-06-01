@@ -7,10 +7,13 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance = null;
+
     public GameObject canvas;
 
     [Header("Buttons")]
     public Button btnStart;
+    public Button btnDone;
 
     [Space(1)]
     [Header("Gameobjects")]
@@ -20,6 +23,12 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else Destroy(gameObject);
+
         btnStart.onClick.AddListener(() => StartCallBack());
     }
 

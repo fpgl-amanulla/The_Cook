@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
 
     public Transform mainTransform;
     public Transform kitchenTransform;
+    public Transform decorTransform;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class CameraController : MonoBehaviour
     public IEnumerator GoToMainTransform(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        Debug.Log("Working");
         transform.position = mainTransform.position;
         transform.rotation = mainTransform.rotation;
     }
@@ -26,5 +28,11 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         transform.position = kitchenTransform.position;
         transform.rotation = kitchenTransform.rotation;
+    }
+    public IEnumerator GoToDecorTransform(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        transform.position = decorTransform.position;
+        transform.rotation = decorTransform.rotation;
     }
 }
