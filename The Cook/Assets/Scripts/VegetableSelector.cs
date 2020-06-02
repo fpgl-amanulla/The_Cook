@@ -28,7 +28,7 @@ public class VegetableSelector : MonoBehaviour
                         , 0.5f, 1.0f);
                     hit.transform.SetParent(trayTransform);
                     hit.transform.tag = "Untagged";
-                    hit.transform.GetComponent<BoxCollider>().enabled = false;
+                    //hit.transform.GetComponent<BoxCollider>().enabled = false;
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
 
                     UIManager.Instance.btnDone.gameObject.SetActive(true);
