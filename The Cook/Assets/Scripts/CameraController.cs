@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class CameraController : MonoBehaviour
     public Transform mainTransform;
     public Transform kitchenTransform;
     public Transform decorTransform;
+    public Transform knifeTransform;
 
     private void Start()
     {
@@ -32,7 +34,16 @@ public class CameraController : MonoBehaviour
     public IEnumerator GoToDecorTransform(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        transform.position = decorTransform.position;
-        transform.rotation = decorTransform.rotation;
+        transform.DOMove(decorTransform.position, 1.0f);
+        transform.DORotateQuaternion(decorTransform.rotation, 1.0f);
+        UIManager.Instance.btnDone.gameObject.SetActive(false);
+    }
+    public IEnumerator GoToKnifeTransform(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        transform.DOMove(knifeTransform.position, 1.0f);
+        transform.DORotateQuaternion(knifeTransform.rotation, 1.0f);
+        //transform.position = knifeTransform.position;
+        //transform.rotation = knifeTransform.rotation;
     }
 }

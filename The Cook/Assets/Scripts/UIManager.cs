@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
     {
         panelStart.SetActive(false);
         GameObject fadeImage = Instantiate(imgFade, canvas.transform);
-        TweenManager.DoFade(fadeImage.GetComponent<Image>(), 2.5f);
-        StartCoroutine(CameraController.Instance.GoToKitchenTransform(2.0f));
+        TweenManager.DoFade(fadeImage.GetComponent<Image>(), 1.5f);
+        StartCoroutine(CameraController.Instance.GoToKitchenTransform(1.5f));
     }
 }

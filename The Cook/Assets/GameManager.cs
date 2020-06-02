@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject knife;
     public GameObject tray;
     public GameObject trayToPlate;
+    public GameObject drawer;
 
     public PhysicMaterial p;
     public Transform plate;
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
                 Destroy(item.gameObject.GetComponent<Rigidbody>());
                 //item.gameObject.AddComponent<Rigidbody>();
                 item.GetComponent<BoxCollider>().material = p;
-                item.transform.position = new Vector3(item.transform.position.x, item.transform.position.y, item.transform.position.z - .02f);
+                item.transform.position = new Vector3(item.transform.position.x, item.transform.position.y, item.transform.position.z);
             }
         }
         StartCoroutine(Wait());
@@ -47,7 +48,8 @@ public class GameManager : MonoBehaviour
             foreach (var item in childrens)
             {
                 item.gameObject.AddComponent<Rigidbody>();
-                item.gameObject.GetComponent<Rigidbody>().drag = 10;
+                item.gameObject.GetComponent<Rigidbody>().drag = 0;
+                item.gameObject.GetComponent<Rigidbody>().mass = 1000;
                 item.SetParent(plate.transform);
             }
         }
