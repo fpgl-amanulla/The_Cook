@@ -20,6 +20,6 @@ public class CheckCollision : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-
+        collision.transform.SetParent(this.transform);
     }
 }
