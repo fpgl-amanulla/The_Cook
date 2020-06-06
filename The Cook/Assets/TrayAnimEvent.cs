@@ -6,10 +6,13 @@ public class TrayAnimEvent : MonoBehaviour
 {
     public Animator anim;
 
+    public Transform plate;
+    public GameObject allVegetale;
+
     public void TrayAnimEnd()
     {
-        
         Debug.Log("TrayAnim");
+        allVegetale.transform.SetParent(plate.transform);
     }
 
     public void PlayTrayAnim()
@@ -17,9 +20,11 @@ public class TrayAnimEvent : MonoBehaviour
         anim.SetBool("isPlay", true);
         StartCoroutine(Wait());
     }
+
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1.5f);
-        GameManager.Instance.VegetableFall();
+        yield return new WaitForSeconds(.5f);
+
+        
     }
 }

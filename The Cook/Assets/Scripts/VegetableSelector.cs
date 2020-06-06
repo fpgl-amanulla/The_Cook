@@ -22,40 +22,11 @@ public class VegetableSelector : MonoBehaviour
                 if (hit.transform.CompareTag("Vegetable"))
                 {
                     GameManager.Instance.vegetableList.Add(hit.transform.gameObject);
-                    if (c == 0)
-                    {
-                        TweenManager.JumpObject(hit.transform.gameObject, new Vector3(
-                             trayTransform[c].position.x, trayTransform[c].position.y, trayTransform[c].position.z
-                            )
-                            , 0.5f, 1.0f);
-                        hit.transform.SetParent(trayTransform[c]);
-                        hit.transform.tag = "Untagged";
-                        hit.transform.GetComponent<BoxCollider>().enabled = false;
-                        hit.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    }
-                    if (c == 1)
-                    {
-                        TweenManager.JumpObject(hit.transform.gameObject, new Vector3(
-                             trayTransform[c].position.x, trayTransform[c].position.y, trayTransform[c].position.z
-                            )
-                            , 0.5f, 1.0f);
-                        hit.transform.SetParent(trayTransform[c]);
-                        hit.transform.tag = "Untagged";
-                        hit.transform.GetComponent<BoxCollider>().enabled = false;
-                        hit.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    }
-                    if (c == 2)
-                    {
-                        TweenManager.JumpObject(hit.transform.gameObject, new Vector3(
-                             trayTransform[c].position.x, trayTransform[c].position.y, trayTransform[c].position.z
-                            )
-                            , 0.5f, 1.0f);
-                        hit.transform.SetParent(trayTransform[c]);
-                        hit.transform.tag = "Untagged";
-                        hit.transform.GetComponent<BoxCollider>().enabled = false;
-                        hit.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    }
-                    c++;
+                    TweenManager.JumpObject(hit.transform.gameObject, new Vector3(
+                           trayTransform[c].position.x + UnityEngine.Random.Range(.1f, -.1f), trayTransform[c].position.y, trayTransform[c].position.z + UnityEngine.Random.Range(.1f, -.1f)
+                          )
+                          , 0.5f, 1.0f);
+                    hit.transform.SetParent(trayTransform[c]);
                     UIManager.Instance.btnDone.gameObject.SetActive(true);
                     UIManager.Instance.btnDone.onClick.RemoveAllListeners();
                     UIManager.Instance.btnDone.onClick.AddListener(() => SelectDone());

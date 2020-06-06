@@ -48,16 +48,16 @@ namespace BzKovSoft.ObjectSlicer.EventHandlers
 		/// <summary>
 		/// Draw center of mass
 		/// </summary>
-		void OnDrawGizmosSelected()
-		{
-			Rigidbody rigid = this.GetComponent<Rigidbody>();
-			if (rigid == null)
-				return;
+		//void OnDrawGizmosSelected()
+		//{
+		//	Rigidbody rigid = this.GetComponent<Rigidbody>();
+		//	if (rigid == null)
+		//		return;
 
-			Vector3 pos = this.transform.position + this.transform.TransformDirection(rigid.centerOfMass);
-			Gizmos.color = Color.yellow;
-			Gizmos.DrawSphere(pos, 0.1f);
-		}
+		//	Vector3 pos = this.transform.position + this.transform.TransformDirection(rigid.centerOfMass);
+		//	Gizmos.color = Color.yellow;
+		//	Gizmos.DrawSphere(pos, 0.1f);
+		//}
 
 		private static float VolumeOfMesh(GameObject gameObject, out Vector3 center)
 		{
