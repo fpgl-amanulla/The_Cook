@@ -25,15 +25,19 @@ public class CameraController : MonoBehaviour
         transform.position = mainTransform.position;
         transform.rotation = mainTransform.rotation;
     }
-    public IEnumerator GoToKitchenTransform(float waitTime)
+    public void GoToKitchenTransform()
     {
-        yield return new WaitForSeconds(waitTime);
         transform.position = kitchenTransform.position;
         transform.rotation = kitchenTransform.rotation;
+        StartCoroutine(OpenDrawer());
+    }
+
+    IEnumerator OpenDrawer()
+    {
         yield return new WaitForSeconds(1.5f);
         Drawer.Instance.OpenDrawer();
-
     }
+
     public IEnumerator GoToDecorTransform(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
