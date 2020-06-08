@@ -1,82 +1,53 @@
-﻿using DG.Tweening;
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
 public class DecorController : MonoBehaviour
 {
-    private float speedModifier = .1f;
-    public Transform decor;
-    public Transform DecorTransform;
-    public Transform DecorIdle;
-    private bool idle = true;
-    public GameObject spice;
-    private void Update()
+    public float speed;
+    public Transform visuals;
+    private Vector3 deviation;
+    public float maxDragDistance = 40f;
+    private Vector3 moveDirection = Vector3.forward;
+    private Vector3 currentDirection = Vector3.forward;
+    public float sensitivity = 150;
+    public float turnTreshold = 15f;
+    private Vector3 mouseStartPosition;
+    private Vector3 mouseCurrentPosition;
+    protected Quaternion targetRotation;
+    [SerializeField] private float movementSmoothing;
+    [SerializeField] private float rotationSmoothing;
+
+    void Update()
     {
-
-        //if (Input.touchCount == 1)
-        //{
-        //    Touch touch = Input.GetTouch(0);
-
-        //    if (touch.phase == TouchPhase.Moved)
-        //    {
-        //        Instantiate(spice, decor.transform.position, Quaternion.identity);
-        //        //decor.transform.localPosition = new Vector3(
-        //        //     Mathf.Clamp(decor.transform.localPosition.x, -1, 1) + touch.deltaPosition.x * speedModifier * Time.deltaTime,
-        //        //     decor.transform.localPosition.y,
-        //        //     Mathf.Clamp(decor.transform.localPosition.z, -.5f, .5f) + touch.deltaPosition.y * speedModifier * Time.deltaTime
-        //        //    );
-        //    }
-        //    else if (touch.phase == TouchPhase.Ended)
-        //    {
-
-        //    }
-        //}
-        if (Input.GetMouseButton(0) && idle == false)
-        {
-            GameObject g = Instantiate(spice, decor.transform.position, Quaternion.identity);
-            g.transform.SetParent(GameManager.Instance.plate);
-        }
-
+        mouseCurrentPosition = Input.mousePosition;
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
+            mouseStartPosition = mouseCurrentPosition;
+        }
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Input.GetMouseButton(0))
+        {
+            deviation = moveDirection * speed * Time.deltaTime;
+            transform.position += deviation;
 
-            if (Physics.Raycast(ray, out hit))
+            float distance = (mouseCurrentPosition - mouseStartPosition).magnitude;
+            if (distance > turnTreshold)
             {
-                if (hit.transform.CompareTag("Decor"))
+                if (distance > sensitivity)
                 {
-                    if (idle == true)
-                    {
-                        hit.transform.DOMove(DecorTransform.position, 1.0f).OnComplete(Complete);
-                        hit.transform.DORotate(new Vector3(90, transform.position.y, transform.position.z), 1.0f);
-                    }
-                    //else if(idle == false)
-                    //{
-                    //    hit.transform.DOMove(DecorIdle.position, 1.0f);
-                    //    idle = true;
-                    //}
-                    UIManager.Instance.btnDone.gameObject.SetActive(true);
-                    UIManager.Instance.btnDone.onClick.RemoveAllListeners();
-                    UIManager.Instance.btnDone.onClick.AddListener(() => DecorDone());
+                    mouseStartPosition = mouseCurrentPosition - (moveDirection * sensitivity);
                 }
+
+                currentDirection = -(mouseStartPosition - mouseCurrentPosition).normalized;
+                moveDirection.x = Mathf.Lerp(moveDirection.x, currentDirection.x, movementSmoothing);
+                moveDirection.z = Mathf.Lerp(moveDirection.z, currentDirection.y, movementSmoothing);
+                moveDirection.y = 0f;
             }
         }
-    }
+        else if (Input.GetMouseButtonUp(0))
+        {
 
-    private void Complete()
-    {
-        idle = false;
-    }
-
-    private void DecorDone()
-    {
-        Destroy(decor.gameObject);
-        UIManager.Instance.btnDone.gameObject.SetActive(false);
-        GameManager.Instance.plate.DOLocalMove(new Vector3(0, -0.0075f, 0.0021f), 1.5f);
+        }
     }
 }

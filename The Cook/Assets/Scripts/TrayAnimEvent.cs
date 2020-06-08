@@ -8,23 +8,20 @@ public class TrayAnimEvent : MonoBehaviour
 
     public Transform plate;
     public GameObject allVegetale;
+    public GameObject decor;
+    public GameObject decorController;
 
     public void TrayAnimEnd()
     {
         Debug.Log("TrayAnim");
         allVegetale.transform.SetParent(plate.transform);
+        decor.SetActive(true);
+        decorController.SetActive(true);
     }
 
     public void PlayTrayAnim()
     {
         anim.SetBool("isPlay", true);
-        StartCoroutine(Wait());
     }
 
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(.5f);
-
-        
-    }
 }

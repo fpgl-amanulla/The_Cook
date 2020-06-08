@@ -11,7 +11,7 @@ public class KnifeController : MonoBehaviour
     public float maxDragDistance = 40f;
     private Vector3 moveDirection = Vector3.forward;
     private Vector3 currentDirection = Vector3.forward;
-    public float sensitivity = 300f;
+    public float sensitivity = 150;
     public float turnTreshold = 15f;
     private Vector3 mouseStartPosition;
     private Vector3 mouseCurrentPosition;
@@ -37,7 +37,7 @@ public class KnifeController : MonoBehaviour
         {
             knifeAnim.SetBool("isPlay", true);
 
-            deviation = moveDirection * speed * 20f * Time.deltaTime;
+            deviation = moveDirection * speed * Time.deltaTime;
             transform.position += deviation;
 
             float distance = (mouseCurrentPosition - mouseStartPosition).magnitude;

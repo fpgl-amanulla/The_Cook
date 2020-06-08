@@ -27,13 +27,14 @@ public class CameraController : MonoBehaviour
     }
     public void GoToKitchenTransform()
     {
-        transform.position = kitchenTransform.position;
-        transform.rotation = kitchenTransform.rotation;
-        StartCoroutine(OpenDrawer());
+        StartCoroutine(InitKitchen());
     }
 
-    IEnumerator OpenDrawer()
+    IEnumerator InitKitchen()
     {
+        yield return new WaitForSeconds(1.5f);
+        transform.position = kitchenTransform.position;
+        transform.rotation = kitchenTransform.rotation;
         yield return new WaitForSeconds(1.5f);
         Drawer.Instance.OpenDrawer();
     }
