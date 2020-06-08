@@ -90,6 +90,13 @@ public class DecorSelector : MonoBehaviour
 
     private void OrderComplete()
     {
+        Debug.Log("Complete");
+        StartCoroutine(WaitForLevelEnd());
+    }
+
+    IEnumerator WaitForLevelEnd()
+    {
+        yield return new WaitForSeconds(1.0f);
         panelLevelEnd.SetActive(true);
     }
 }

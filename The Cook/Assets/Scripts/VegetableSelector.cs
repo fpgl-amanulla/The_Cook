@@ -23,7 +23,7 @@ public class VegetableSelector : MonoBehaviour
                 {
                     GameManager.Instance.vegetableList.Add(hit.transform.gameObject);
                     TweenManager.JumpObject(hit.transform.gameObject, new Vector3(
-                           trayTransform[c].position.x + UnityEngine.Random.Range(.1f, -.1f), trayTransform[c].position.y, trayTransform[c].position.z + UnityEngine.Random.Range(.1f, -.1f)
+                           trayTransform[c].position.x + UnityEngine.Random.Range(.2f, -.2f), trayTransform[c].position.y, trayTransform[c].position.z + UnityEngine.Random.Range(.2f, -.2f)
                           )
                           , 0.5f, 1.0f);
                     hit.transform.SetParent(trayTransform[c]);
