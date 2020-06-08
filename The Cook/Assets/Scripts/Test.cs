@@ -7,14 +7,19 @@ using UnityEngine.UI;
 public class Test : MonoBehaviour
 {
     public TrayAnimEvent trayAnim;
-
+    public GameObject knife;
+    private bool isDone = false;
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Vegetable"))
         {
-            UIManager.Instance.btnDone.gameObject.SetActive(true);
-            UIManager.Instance.btnDone.onClick.RemoveAllListeners();
-            UIManager.Instance.btnDone.onClick.AddListener(() => CuttingDone());
+            if (isDone == false)
+            {
+                isDone = true;
+                UIManager.Instance.btnDone.onClick.RemoveAllListeners();
+                UIManager.Instance.btnDone.gameObject.SetActive(true);
+                UIManager.Instance.btnDone.onClick.AddListener(() => CuttingDone());
+            }
         }
     }
 
@@ -34,6 +39,7 @@ public class Test : MonoBehaviour
         StartCoroutine(CameraController.Instance.GoToDecorTransform(0f));
         StartCoroutine(Wait());
         UIManager.Instance.btnDone.gameObject.SetActive(false);
+        knife.SetActive(false);
     }
 
     IEnumerator Wait()

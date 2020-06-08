@@ -15,6 +15,8 @@ public class DecorSelector : MonoBehaviour
     public GameObject spice;
     public GameObject plateH;
     private int count = 0;
+
+    public GameObject panelLevelEnd;
     private void Update()
     {
 
@@ -66,8 +68,8 @@ public class DecorSelector : MonoBehaviour
                     //    hit.transform.DOMove(DecorIdle.position, 1.0f);
                     //    idle = true;
                     //}
-                    UIManager.Instance.btnDone.gameObject.SetActive(true);
                     UIManager.Instance.btnDone.onClick.RemoveAllListeners();
+                    UIManager.Instance.btnDone.gameObject.SetActive(true);
                     UIManager.Instance.btnDone.onClick.AddListener(() => DecorDone());
                 }
             }
@@ -83,6 +85,11 @@ public class DecorSelector : MonoBehaviour
     {
         Destroy(decor.gameObject);
         UIManager.Instance.btnDone.gameObject.SetActive(false);
-        GameManager.Instance.plate.DOLocalMove(new Vector3(-0.012548f, 0.507f, .5f), 1.5f);
+        GameManager.Instance.plate.DOLocalMove(new Vector3(-0.012548f, 0.507f, .5f), 1.5f).OnComplete(OrderComplete);
+    }
+
+    private void OrderComplete()
+    {
+        panelLevelEnd.SetActive(true);
     }
 }
