@@ -9,10 +9,12 @@ public class Test : MonoBehaviour
     public TrayAnimEvent trayAnim;
     public GameObject knife;
     private bool isDone = false;
+    public ParticleSystem cuttingEffect;
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Vegetable"))
         {
+            cuttingEffect.Play();
             if (isDone == false)
             {
                 isDone = true;

@@ -1,8 +1,6 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
 public class DecorSelector : MonoBehaviour
@@ -17,6 +15,10 @@ public class DecorSelector : MonoBehaviour
     private int count = 0;
 
     public GameObject panelLevelEnd;
+
+    private float time = 0f;
+    private float nextSpawnTime = .1f;
+
     private void Update()
     {
 
@@ -38,13 +40,18 @@ public class DecorSelector : MonoBehaviour
 
         //    }
         //}
-        if (count < 150)
+        if (count < 50)
         {
             if (Input.GetMouseButton(0) && idle == false)
             {
-                count++;
-                GameObject g = Instantiate(spice, decor.transform.position, Quaternion.identity);
-                g.transform.SetParent(plateH.transform);
+                time += Time.deltaTime;
+                if (time > nextSpawnTime)
+                {
+                    count++;
+                    time = 0;
+                    GameObject g = Instantiate(spice, decor.transform.position, Quaternion.identity);
+                    g.transform.SetParent(plateH.transform);
+                }
             }
         }
 
@@ -62,6 +69,7 @@ public class DecorSelector : MonoBehaviour
                     {
                         hit.transform.DOMove(DecorTransform.position, 1.0f).OnComplete(Complete);
                         hit.transform.DORotate(new Vector3(90, transform.position.y, transform.position.z), 1.0f);
+                        decor.GetComponent<DecorController>().enabled = true;
                     }
                     //else if(idle == false)
                     //{

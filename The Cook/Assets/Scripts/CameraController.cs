@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         transform.position = kitchenTransform.position;
         transform.rotation = kitchenTransform.rotation;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.5f);
         Drawer.Instance.OpenDrawer();
     }
 
