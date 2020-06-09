@@ -8,9 +8,13 @@ public class CameraController : MonoBehaviour
     public static CameraController Instance = null;
 
     public Transform mainTransform;
-    public Transform kitchenTransform;
+    public Transform kitchenForSalad;
+    public Transform kitchenForStew;
     public Transform decorTransform;
-    public Transform knifeTransform;
+    public Transform knifeTransformForSalad;
+    public Transform knifeTransformForStew;
+    public Transform fryingPanTransForm;
+
 
     private void Start()
     {
@@ -25,7 +29,7 @@ public class CameraController : MonoBehaviour
         transform.position = mainTransform.position;
         transform.rotation = mainTransform.rotation;
     }
-    public void GoToKitchenTransform()
+    public void GoToKitchen()
     {
         StartCoroutine(InitKitchen());
     }
@@ -33,8 +37,16 @@ public class CameraController : MonoBehaviour
     IEnumerator InitKitchen()
     {
         yield return new WaitForSeconds(1.5f);
-        transform.position = kitchenTransform.position;
-        transform.rotation = kitchenTransform.rotation;
+        if (AppDelegate.SharedManager().orderType == OrderType.Salad)
+        {
+            transform.position = kitchenForSalad.position;
+            transform.rotation = kitchenForSalad.rotation;
+        }
+        else if (AppDelegate.SharedManager().orderType == OrderType.Stew)
+        {
+            transform.position = kitchenForStew.position;
+            transform.rotation = kitchenForStew.rotation;
+        }
         yield return new WaitForSeconds(.5f);
         Drawer.Instance.OpenDrawer();
     }
@@ -44,13 +56,30 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         transform.DOMove(decorTransform.position, 1.0f);
         transform.DORotateQuaternion(decorTransform.rotation, 1.0f);
-        UIManager.Instance.btnDone.gameObject.SetActive(false);
+        //UIManager.Instance.btnDone.gameObject.SetActive(false);
     }
+
+    public IEnumerator GoToFryingPanTransform(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        transform.DOMove(fryingPanTransForm.position, 1.0f);
+        transform.DORotateQuaternion(fryingPanTransForm.rotation, 1.0f);
+        //UIManager.Instance.btnDone.gameObject.SetActive(false);
+    }
+
     public IEnumerator GoToKnifeTransform(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        transform.DOMove(knifeTransform.position, 1.0f);
-        transform.DORotateQuaternion(knifeTransform.rotation, 1.0f);
+        if (AppDelegate.SharedManager().orderType == OrderType.Salad)
+        {
+            transform.DOMove(knifeTransformForSalad.position, 1.0f);
+            transform.DORotateQuaternion(knifeTransformForSalad.rotation, 1.0f);
+        }
+        else if (AppDelegate.SharedManager().orderType == OrderType.Stew)
+        {
+            transform.DOMove(knifeTransformForStew.position, 1.0f);
+            transform.DORotateQuaternion(knifeTransformForStew.rotation, 1.0f);
+        }
         //transform.position = knifeTransform.position;
         //transform.rotation = knifeTransform.rotation;
     }

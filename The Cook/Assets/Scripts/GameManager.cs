@@ -11,15 +11,16 @@ public class GameManager : MonoBehaviour
     public List<GameObject> vegetableList = new List<GameObject>();
 
     public GameObject knife;
-    public GameObject tray;
-    public GameObject trayToPlate;
     public GameObject drawer;
 
     public Transform plate;
     private void Start()
     {
+        AppDelegate appDelegate = AppDelegate.SharedManager();
+
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
     }
 
 }

@@ -17,7 +17,7 @@ public class DecorSelector : MonoBehaviour
     public GameObject panelLevelEnd;
 
     private float time = 0f;
-    private float nextSpawnTime = .1f;
+    private float nextSpawnTime = .05f;
 
     private void Update()
     {
@@ -49,8 +49,11 @@ public class DecorSelector : MonoBehaviour
                 {
                     count++;
                     time = 0;
-                    GameObject g = Instantiate(spice, decor.transform.position, Quaternion.identity);
-                    g.transform.SetParent(plateH.transform);
+                    if (spice != null && decor != null)
+                    {
+                        GameObject g = Instantiate(spice, decor.transform.position, Quaternion.identity);
+                        g.transform.SetParent(plateH.transform);
+                    }
                 }
             }
         }
@@ -98,7 +101,6 @@ public class DecorSelector : MonoBehaviour
 
     private void OrderComplete()
     {
-        Debug.Log("Complete");
         StartCoroutine(WaitForLevelEnd());
     }
 

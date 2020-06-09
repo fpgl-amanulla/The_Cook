@@ -13,12 +13,15 @@ public class PanelLevelEnd : MonoBehaviour
 
     private void Start()
     {
-        txtOrderNo.text = "Order " + 1;
+        txtOrderNo.text = "Order " + AppDelegate.SharedManager().templevelCounter;
         btnNext.onClick.AddListener(() => NextCallback());
     }
 
     private void NextCallback()
     {
+        AppDelegate.SharedManager().templevelCounter += 1;
+        AppDelegate.SharedManager().levelCounter += 1;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

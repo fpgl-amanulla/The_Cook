@@ -12,8 +12,9 @@ public class FryingSlider : MonoBehaviour
     public Image imgSlide;
     public Transform cam;
     public GameObject plateSmoke;
+    public Transform decorTransform;
 
-    private float cookingTime = 10.0f;
+    private float cookingTime = 5.0f;
     float time = 0;
     public float timeCount = 0;
 
@@ -36,7 +37,8 @@ public class FryingSlider : MonoBehaviour
                     {
                         pan.CookingComplete();
                         StartCoroutine(SetParent());
-                        cam.DOMove(new Vector3(3.8f, cam.position.y, cam.position.z), 1.0f);
+                        cam.DOMove(decorTransform.position, 1.0f);
+                        cam.DORotateQuaternion(decorTransform.rotation, 1.0f);
                         imgSlide.gameObject.SetActive(false);
                         imgSlide.transform.parent.GetComponent<Image>().enabled = false;
 
