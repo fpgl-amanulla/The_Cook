@@ -30,7 +30,7 @@ public class Test : MonoBehaviour
         trayAnim.PlayTrayAnim();
         if (AppDelegate.SharedManager().orderType == OrderType.Salad)
         {
-            StartCoroutine(CameraController.Instance.GoToDecorTransform(0f));
+            CameraController.Instance.GoToDecorTransform(0);
         }
         else if (AppDelegate.SharedManager().orderType == OrderType.Stew)
         {

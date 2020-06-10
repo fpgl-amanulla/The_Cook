@@ -14,9 +14,10 @@ public class CameraController : MonoBehaviour
     public Transform knifeTransformForSalad;
     public Transform knifeTransformForStew;
     public Transform fryingPanTransForm;
+    public Transform iceCreamTransform;
 
 
-    private void Start()
+    private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
@@ -28,6 +29,12 @@ public class CameraController : MonoBehaviour
         Debug.Log("Working");
         transform.position = mainTransform.position;
         transform.rotation = mainTransform.rotation;
+    }
+
+    public void TweenToMainTransform()
+    {
+        transform.DOMove(mainTransform.position, 1.0f);
+        transform.DORotateQuaternion(mainTransform.rotation, 1.0f);
     }
     public void GoToKitchen()
     {
@@ -51,11 +58,11 @@ public class CameraController : MonoBehaviour
         Drawer.Instance.OpenDrawer();
     }
 
-    public IEnumerator GoToDecorTransform(float waitTime)
+    public void GoToDecorTransform(float waitTime)
     {
-        yield return new WaitForSeconds(waitTime);
         transform.DOMove(decorTransform.position, 1.0f);
         transform.DORotateQuaternion(decorTransform.rotation, 1.0f);
+
         //UIManager.Instance.btnDone.gameObject.SetActive(false);
     }
 
@@ -82,5 +89,11 @@ public class CameraController : MonoBehaviour
         }
         //transform.position = knifeTransform.position;
         //transform.rotation = knifeTransform.rotation;
+    }
+
+    public void GoToIceCreamTransform()
+    {
+        transform.DOMove(iceCreamTransform.position, 1.0f);
+        transform.DORotateQuaternion(iceCreamTransform.rotation, 1.0f);
     }
 }

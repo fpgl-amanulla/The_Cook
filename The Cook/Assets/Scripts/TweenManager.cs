@@ -9,9 +9,14 @@ public class TweenManager : MonoBehaviour
 {
     private static Image imgFade;
 
-    public static void JumpObject(GameObject gameObject, Vector3 endPos, float jumpPower, float durationTime, int numberOfJump = 1)
+    public static void JumpObject(GameObject gameObject, Vector3 endPos, float jumpPower, float durationTime, int numberOfJump = 1, bool isLocal = false)
     {
-        gameObject.transform.DOJump(endPos, jumpPower, numberOfJump, durationTime);
+        if (isLocal)
+        {
+            gameObject.transform.DOLocalJump(endPos, jumpPower, numberOfJump, durationTime);
+        }
+        else
+            gameObject.transform.DOJump(endPos, jumpPower, numberOfJump, durationTime);
     }
     public static void DoFade(Image _imgFade, float durationTime)
     {

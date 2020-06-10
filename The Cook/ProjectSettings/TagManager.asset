@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Vegetable
   - Decor
+  - Fire
+  - Tray
+  - Ice
   layers:
   - Default
   - TransparentFX

@@ -2490,7 +2490,7 @@ GameObject:
   - component: {fileID: 714041231}
   - component: {fileID: 714041232}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: PaneliceCream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

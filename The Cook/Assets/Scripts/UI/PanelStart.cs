@@ -26,6 +26,12 @@ public class PanelStart : MonoBehaviour
     public Transform kitchenForSalad;
     public Transform kitchenForStew;
 
+    public GameObject decor;
+    public GameObject decorSelector;
+    public GameObject foodTray;
+    public GameObject iceCreamTray;
+    public GameObject iceBall;
+
     string itemName = "";
 
     AppDelegate appDelegate = null;
@@ -33,9 +39,9 @@ public class PanelStart : MonoBehaviour
     {
         appDelegate = AppDelegate.SharedManager();
 
-        if (appDelegate.levelCounter > 2)
+        if (appDelegate.levelCounter > 3)
         {
-            appDelegate.levelCounter = Random.Range(1, 3);
+            appDelegate.levelCounter = Random.Range(1, 4);
         }
 
         switch (appDelegate.levelCounter)
@@ -44,28 +50,45 @@ public class PanelStart : MonoBehaviour
                 appDelegate.orderType = OrderType.Salad;
                 kitchen.transform.position = kitchenForSalad.position;
                 fryPart.SetActive(false);
+                itemName = "Salad";
                 break;
             case (int)OrderType.Stew:
                 appDelegate.orderType = OrderType.Stew;
                 kitchen.transform.position = kitchenForStew.position;
                 fryPart.SetActive(true);
+                itemName = "Stew";
+                break;
+            case (int)OrderType.Icecream:
+                appDelegate.orderType = OrderType.Icecream;
+                iceCreamTray.SetActive(true);
+                foodTray.SetActive(false);
+                kitchen.SetActive(false);
+                fryPart.SetActive(false);
+                itemName = "Ice Cream";
                 break;
             default:
                 break;
         }
-
-
-        itemName = appDelegate.orderType.ToString();
 
         txtFoodItem.text = itemName;
         btnStart.onClick.AddListener(() => StartCallBack());
     }
     private void StartCallBack()
     {
+        if (appDelegate.orderType == OrderType.Icecream)
+        {
+            iceBall.SetActive(true);
+            CameraController.Instance.GoToDecorTransform(0);
+            decorSelector.SetActive(true);
+            decor.SetActive(true);
+        }
+        else
+        {
+            GameObject fadeImage = Instantiate(imgFade, canvas.transform);
+            TweenManager.DoFade(fadeImage.GetComponent<Image>(), 1.5f);
+            CameraController.Instance.GoToKitchen();
+        }
         panelStart.SetActive(false);
-        GameObject fadeImage = Instantiate(imgFade, canvas.transform);
-        TweenManager.DoFade(fadeImage.GetComponent<Image>(), 1.5f);
-        CameraController.Instance.GoToKitchen();
     }
 
 }

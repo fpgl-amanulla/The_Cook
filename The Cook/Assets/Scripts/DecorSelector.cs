@@ -12,12 +12,23 @@ public class DecorSelector : MonoBehaviour
     private bool idle = true;
     public GameObject spice;
     public GameObject plateH;
+    public GameObject iceCreamTray;
     private int count = 0;
-
+    private int limit = 50;
     public GameObject panelLevelEnd;
 
     private float time = 0f;
     private float nextSpawnTime = .05f;
+
+    public Transform transformOnTray;
+    public GameObject iceBall;
+    public GameObject panelIceSlider;
+
+    private void Start()
+    {
+        if (AppDelegate.SharedManager().orderType == OrderType.Icecream)
+            limit = 200;
+    }
 
     private void Update()
     {
@@ -40,7 +51,7 @@ public class DecorSelector : MonoBehaviour
 
         //    }
         //}
-        if (count < 50)
+        if (count < limit)
         {
             if (Input.GetMouseButton(0) && idle == false)
             {
@@ -52,7 +63,12 @@ public class DecorSelector : MonoBehaviour
                     if (spice != null && decor != null)
                     {
                         GameObject g = Instantiate(spice, decor.transform.position, Quaternion.identity);
-                        g.transform.SetParent(plateH.transform);
+                        if (AppDelegate.SharedManager().orderType == OrderType.Icecream)
+                        {
+                            g.transform.SetParent(iceCreamTray.transform);
+                        }
+                        else
+                            g.transform.SetParent(plateH.transform);
                     }
                 }
             }
@@ -96,7 +112,16 @@ public class DecorSelector : MonoBehaviour
     {
         Destroy(decor.gameObject);
         UIManager.Instance.btnDone.gameObject.SetActive(false);
-        GameManager.Instance.plate.DOLocalMove(new Vector3(-0.012548f, 0.507f, .5f), 1.5f).OnComplete(OrderComplete);
+        if (AppDelegate.SharedManager().orderType == OrderType.Icecream)
+        {
+            TweenManager.JumpObject(iceBall, transformOnTray.position, 1.0f, .5f);
+            CameraController.Instance.GoToIceCreamTransform();
+            iceBall.transform.GetComponent<IceBallController>().enabled = true;
+            AppDelegate.SharedManager().totalIceCount = count;
+            panelIceSlider.SetActive(true);
+        }
+        else
+            GameManager.Instance.plate.DOLocalMove(new Vector3(-0.012548f, 0.507f, .5f), 1.5f).OnComplete(OrderComplete);
     }
 
     private void OrderComplete()

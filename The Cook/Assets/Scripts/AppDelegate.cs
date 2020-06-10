@@ -7,6 +7,8 @@ public class AppDelegate
     public int levelCounter = 1;
     public int templevelCounter = 1;
 
+    public int totalIceCount = 0;
+
     public OrderType orderType;
 
     public static AppDelegate sharedInstance = null;
