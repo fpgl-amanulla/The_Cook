@@ -66,6 +66,7 @@ public class DecorSelector : MonoBehaviour
                         if (AppDelegate.SharedManager().orderType == OrderType.Icecream)
                         {
                             g.transform.SetParent(iceCreamTray.transform);
+                            StartCoroutine(Wait(g));
                         }
                         else
                             g.transform.SetParent(plateH.transform);
@@ -101,6 +102,13 @@ public class DecorSelector : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator Wait(GameObject g)
+    {
+        yield return new WaitForSeconds(1.25f);
+        Destroy(g.transform.GetComponent<Rigidbody>());
+        g.transform.GetComponent<Collider>().isTrigger = true;
     }
 
     private void Complete()

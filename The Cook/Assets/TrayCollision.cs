@@ -11,8 +11,8 @@ public class TrayCollision : MonoBehaviour
         {
             if (collision.collider.CompareTag("Ice"))
             {
-                Destroy(collision.transform.GetComponent<Rigidbody>());
-                collision.transform.GetComponent<Collider>().isTrigger = true;
+                //Destroy(collision.transform.GetComponent<Rigidbody>());
+                //collision.transform.GetComponent<Collider>().isTrigger = true;
             }
         }
     }
