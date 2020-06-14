@@ -39,9 +39,9 @@ public class PanelStart : MonoBehaviour
     {
         appDelegate = AppDelegate.SharedManager();
 
-        if (appDelegate.levelCounter > 3)
+        if (appDelegate.levelCounter > 4)
         {
-            appDelegate.levelCounter = Random.Range(1, 4);
+            appDelegate.levelCounter = Random.Range(1, 5);
         }
 
         switch (appDelegate.levelCounter)
@@ -65,6 +65,12 @@ public class PanelStart : MonoBehaviour
                 kitchen.SetActive(false);
                 fryPart.SetActive(false);
                 itemName = "Ice Cream";
+                break;
+            case (int)OrderType.Soup:
+                appDelegate.orderType = OrderType.Soup;
+                kitchen.transform.position = kitchenForStew.position;
+                fryPart.SetActive(true);
+                itemName = "Soup";
                 break;
             default:
                 break;

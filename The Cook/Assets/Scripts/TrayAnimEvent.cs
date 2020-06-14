@@ -19,7 +19,7 @@ public class TrayAnimEvent : MonoBehaviour
         {
             allVegetale.transform.SetParent(plate.transform);
         }
-        else if (AppDelegate.SharedManager().orderType == OrderType.Stew)
+        else if (AppDelegate.SharedManager().orderType == OrderType.Stew || AppDelegate.SharedManager().orderType == OrderType.Soup)
         {
             allVegetale.transform.SetParent(fryingPan.transform);
         }
@@ -38,7 +38,7 @@ public class TrayAnimEvent : MonoBehaviour
         {
             anim.SetBool("isPlay", true);
         }
-        else if (AppDelegate.SharedManager().orderType == OrderType.Stew)
+        else if (AppDelegate.SharedManager().orderType == OrderType.Stew || AppDelegate.SharedManager().orderType == OrderType.Soup)
         {
             anim.SetTrigger("ToPan");
         }

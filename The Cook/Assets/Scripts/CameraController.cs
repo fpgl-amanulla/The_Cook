@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
             transform.position = kitchenForSalad.position;
             transform.rotation = kitchenForSalad.rotation;
         }
-        else if (AppDelegate.SharedManager().orderType == OrderType.Stew)
+        else if (AppDelegate.SharedManager().orderType == OrderType.Stew || AppDelegate.SharedManager().orderType == OrderType.Soup)
         {
             transform.position = kitchenForStew.position;
             transform.rotation = kitchenForStew.rotation;

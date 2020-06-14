@@ -7,6 +7,7 @@ public enum OrderType
     Salad = 1,
     Stew = 2,
     Icecream = 3,
+    Soup = 4,
 }
 
 public class Constants
