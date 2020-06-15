@@ -288,6 +288,25 @@ MonoBehaviour:
   accurateContacts: 0
   useDistanceFields: 0
   distanceField: {fileID: 0}
+--- !u!95 &40179994
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40179986}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b3079037c0b4d8447a3946f7a8297082, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &42138340
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +742,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 654051533}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &152496957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6935275705003422536, guid: c728efb89aaff044e9d1bd962a0b3ee2,
+    type: 3}
+  m_PrefabInstance: {fileID: 654051533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152496955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d174fab52f0c4b8399f25d5c3ea524c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &155403691
 GameObject:
   m_ObjectHideFlags: 0
@@ -3248,7 +3279,8 @@ MonoBehaviour:
   obiSolver: {fileID: 152496955}
   plate: {fileID: 40179990}
   smoke: {fileID: 1487969030}
-  solver: {fileID: 0}
+  solver: {fileID: 152496957}
+  plateH: {fileID: 40179994}
 --- !u!1 &587364668
 GameObject:
   m_ObjectHideFlags: 0
@@ -31231,7 +31263,7 @@ PrefabInstance:
     - target: {fileID: 6935275705003422536, guid: c728efb89aaff044e9d1bd962a0b3ee2,
         type: 3}
       propertyPath: particleFrictionConstraintParameters.enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6935275705003422536, guid: c728efb89aaff044e9d1bd962a0b3ee2,
         type: 3}
@@ -31241,6 +31273,16 @@ PrefabInstance:
     - target: {fileID: 6935275705003422536, guid: c728efb89aaff044e9d1bd962a0b3ee2,
         type: 3}
       propertyPath: parameters.gravity.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935275705003422536, guid: c728efb89aaff044e9d1bd962a0b3ee2,
+        type: 3}
+      propertyPath: parameters.damping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935275705003422536, guid: c728efb89aaff044e9d1bd962a0b3ee2,
+        type: 3}
+      propertyPath: parameters.shockPropagation
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6935275705003422538, guid: c728efb89aaff044e9d1bd962a0b3ee2,

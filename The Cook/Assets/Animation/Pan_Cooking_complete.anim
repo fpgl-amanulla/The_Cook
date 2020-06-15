@@ -708,7 +708,7 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.0333333
+  - time: 1.05
     functionName: SolverParent
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -717,6 +717,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.75
     functionName: FryingEnd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.9166667
+    functionName: PlateHAnim
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

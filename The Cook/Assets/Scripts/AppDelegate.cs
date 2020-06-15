@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AppDelegate
 {
-    public int levelCounter = 4;
+    public int levelCounter = 1;
     public int templevelCounter = 1;
 
     public int totalIceCount = 0;
