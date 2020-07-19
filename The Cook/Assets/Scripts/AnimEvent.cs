@@ -11,7 +11,6 @@ public class AnimEvent : MonoBehaviour
     public Transform plate;
     public ParticleSystem smoke;
     public ObiSolver solver;
-    public Animator plateH;
     public void FryingEnd()
     {
         allVegetable.transform.SetParent(plate.transform);
@@ -24,10 +23,5 @@ public class AnimEvent : MonoBehaviour
         {
             obiSolver.transform.SetParent(plate);
         }
-    }
-
-    public void PlateHAnim()
-    {
-        plateH.enabled = true;
     }
 }

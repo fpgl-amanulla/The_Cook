@@ -157,10 +157,10 @@ public class EmitterController : MonoBehaviour
 
 
             emitter.mousepressed = true;
-//#if !UNITY_EDITOR && UNITY_ANDROID
+#if !UNITY_EDITOR && UNITY_ANDROID
 
-//            Vibration.Vibrate(20);
-//#endif
+            Vibration.Vibrate(20);
+#endif
         }
         else
         {
